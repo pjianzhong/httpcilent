@@ -1,18 +1,10 @@
 package com.pjz.httpcilent;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.StringEntity;
@@ -20,6 +12,12 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName: HttpCilent
@@ -37,18 +35,20 @@ public class HttpCilent {
      * @Return java.lang.String
      * @Date 2019/8/4 10:36
      **/
-    public static String doGet(String url, Map<String, Object> params) throws IOException {
-        List<NameValuePair> getData = new ArrayList<NameValuePair>();
-        for (Map.Entry<String, Object> entry : params.entrySet()) {
-            getData.add(new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())));
-        }
-        String paramStr = EntityUtils.toString(new UrlEncodedFormEntity(getData, Consts.UTF_8));
-        HttpGet httpGet = new HttpGet(url + "?" + paramStr);
-        return execute(httpGet);
-
-    }
-
     /**
+     * public static String doGet(String url, Map<String, Object> params) throws IOException {
+     * List<NameValuePair> getData = new ArrayList<NameValuePair>();
+     * for (Map.Entry<String, Object> entry : params.entrySet()) {
+     * getData.add(new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())));
+     * }
+     * String paramStr = EntityUtils.toString(new UrlEncodedFormEntity(getData, Consts.UTF_8));
+     * HttpGet httpGet = new HttpGet(url + "?" + paramStr);
+     * return execute(httpGet);
+     * <p>
+     * }
+     * <p>
+     * /**
+     *
      * @Description POST方法
      * @Author pengjianzhong
      * @Param [url, jsonParams]
@@ -71,6 +71,7 @@ public class HttpCilent {
      * @Return java.lang.String
      * @Date 2019/8/4 10:18
      **/
+
     public static String doPost(String url, Map<String, Object> params) throws IOException {
         HttpPost httpPost = new HttpPost(url);
         List<NameValuePair> postData = new ArrayList();
